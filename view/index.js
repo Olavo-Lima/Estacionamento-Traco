@@ -88,12 +88,33 @@ main.innerHTML = dadosHtml
 const getCheckinHtml = () => {
     const main = document.getElementById('root')
     const dadosHtml = `
-        
+    <section>
+        <h2>Lista de Clientes no Estacionamento</h2>
+        <br/>
+        <table id="tbody" class="tabela">
+        <tr>
+            <th>Modelo</th>
+            <th>Placa</th>
+            <th>Opção</th>
+        </tr>
+        </table>
+
+        <div>
+            <label>Placa</label>
+            <select id="select" class="input"></select>
+                <a type="button" id="add-new">Adicionar Novo</a>
+                <br/>
+                <div class="btn">
+                    <button id="checkin" class="btn-link">Checkin</button>
+                </div>
+            </div>
+    </section>
     `
 }
 
 export const view = {
     getListaClientesHTML,
     getCadastro,
-    getUpdate
+    getUpdate,
+    getCheckinHtml
 }

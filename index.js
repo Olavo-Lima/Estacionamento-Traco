@@ -13,7 +13,12 @@ link.addEventListener('click', (event) => {
                 break;
             case "Clientes":
                 listaClienteComponent()
-                break;    
+                break;   
+            case "Checkin": {
+                window.location.href = "/checkin.html"
+                break
+            } 
+
         }
     }
 })

@@ -65,3 +65,4 @@ const deletar = (id) => {
         listaClienteComponent()
     })
 }
+

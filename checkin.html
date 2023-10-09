@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= device-width, initial-scale=1.0">
+    <title>Traco | Seja bem Vindo!</title>
+</head>
+    <body>
+        <div id="link">
+            <nav>
+                <img>
+                <div>
+                    <a>Cadastro</a>
+                    <a>Checkin</a>
+                    <a>Clientes</a>
+                    <a>Faturamento</a>
+                </div> 
+            </nav>
+        </div>
+        <main id='root'>
+            <section>
+                <h2>Lista de Clientes no Estacionamento</h2>
+            <br/>
+            <table id="tbody" class="tabela">
+                <tr>
+                    <th>Modelo</th>
+                    <th>Placa</th>
+                    <th>Opção</th>
+                </tr>
+            </table>
+
+                <div>
+                    <label>Placa</label>
+                    <select id="select" class="input"></select>
+                        <a type="button" id="add-new">Adicionar Novo</a>
+                        <br/>
+                        <div class="btn">
+                            <button id="checkin" class="btn-link">Checkin</button>
+                        </div>
+                    </div>
+            </section>
+        </main>
+    </body>
+    <script type="module" src="./index.js"></script>
+    <script type="module" src="/controller/checkin.js"></script>
+</html>

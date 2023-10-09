@@ -33,6 +33,17 @@ const getVehicle = () => {
     })
 }
 
+const getActivities = () => {
+    return fetch(url + '/activities')
+    .then((response) => {
+        if (response.status != 200) {
+            console.log(`Erro no servidor: ${response.status}`)
+        } else {
+            return response.json()
+        }
+    })
+}
+
 // ----------- PUT ----------- //
 
 const putVeiculo = (objetoCliente, id) => {
@@ -71,5 +82,6 @@ export const service = {
     postVeiculo,
     getVehicle,
     putVeiculo,
-    deleteVehicle
+    deleteVehicle,
+    getActivities
 }
