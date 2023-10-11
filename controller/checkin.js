@@ -1,13 +1,16 @@
 import { service } from "../service/index.js";
 import { view } from "../view/index.js"
+import { cadastroComponent } from "./cadastro.js";
+import { checkoutComponent } from "./checkout.js";
 
     view.getCheckinHtml();
 
 
     let idCheckin = []
+    
     service.getActivities().then((dados) => {
         dados.forEach(element => {
-            if (element != null) {
+            if (element.checkout_at == null) {
                 idCheckin.push(element.vehicle_id)
             }
         });
@@ -73,25 +76,32 @@ import { view } from "../view/index.js"
         const button = target.innerText;
         const id = target.id;
 
-        if (button === "Ckeckout") {
-            
+        if (button === "Checkout") {
+            checkoutComponent(id)
         }
         if (button === "Checkin") {
             const select = document.getElementById('select')
             searchID(select.value)
         }
         if (button === "Adicionar Novo") {
-            console.log(button);
+            cadastroComponent()
         }
     }
  })
 
- const searchID = () => {
+ const searchID = (id) => {
     service.getVehicle().then((dados) => {
         dados.forEach((element) => {
             if (element.id == id) {
-                console.log(element)
+                checkinApi(element)
             }
         })
     })
  } 
+
+ const checkinApi = (objeto) => {
+    service.postCheckin(objeto.label).then((dados) => {
+        alert(dados.message)
+        window.location.reload()
+    })
+ }

@@ -112,9 +112,66 @@ const getCheckinHtml = () => {
     `
 }
 
+const getCheckout = () => {
+    const main = document.getElementById('root')
+    const dadosHtml = `
+    <section class="container">
+        <h2>Dados do Cliente</h2>
+            <table class="tabela">
+                <tr>
+                    <th>Cliente</th>
+                    <th>Modelo</th>
+                    <th>Placa</th>
+                </tr>
+                <tr id="tbody"></tr>
+            </table>
+            <div>
+                <label>Total de Horas</label>
+                <input type="text" id="totalHora" class="input"
+                type="text" placeholder="Total de Horas" disabled/>
+            </div>
+            <br />
+            <div><label>Valor a pagar</label>
+                <input type="text" id="valorPagar" class="input"
+                type="text" placeholder="Valor a pagar" disabled/>
+            </div>
+            <br />
+            <div class="btn">
+                <button class="btn-link" id="finalizar">Finalizar</button>
+            </div>
+    </section>
+    `
+    main.innerHTML = dadosHtml
+}
+
+const getFaturamentoHtml = () => {
+    const main = document.getElementById('root')
+    const dadosHtml = `
+    <section>
+    <h1>Lista de Faturamento</h1>
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th>Qnt de veículos</th>
+                    <th>Total</th>
+                    <th>Dia</th>
+                </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+        <div class="grafico">
+            <div id="piechart_3d"></div>
+        </div>
+    </section>
+    `
+    main.innerHTML = dadosHtml
+}
+
 export const view = {
     getListaClientesHTML,
     getCadastro,
     getUpdate,
-    getCheckinHtml
+    getCheckinHtml,
+    getCheckout,
+    getFaturamentoHtml
 }

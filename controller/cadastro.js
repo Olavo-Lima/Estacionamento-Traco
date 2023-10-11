@@ -2,6 +2,15 @@ import { service } from "../service/index.js"
 import { view } from "../view/index.js"
 
 export const cadastroComponent = () => {
+    let label = []
+    service.getVehicle().then((dados) => {
+        dados.forEach(element => {
+            if (element.label != null) {
+                label.push(element.label)
+            }
+        });
+    })
+
     view.getCadastro()
 
     const formulario = document.getElementById('formulario')
@@ -15,7 +24,11 @@ export const cadastroComponent = () => {
             label: document.getElementById('placa').value,
             observation: document.getElementById('observacoes').value
         }
-        service.postVeiculo(cadastroCliente)
-        console.log(cadastroCliente)
+
+        if (label.includes(cadastroCliente.label)) {
+            return alert(`A placa: ${cadastroCliente.label} já está cadastrada no banco.`)
+        } else {
+            service.postVeiculo(cadastroCliente)
+        }
     })
 }

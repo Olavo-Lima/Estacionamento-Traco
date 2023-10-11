@@ -3,6 +3,16 @@ import { view } from "../view/index.js"
 import { listaClienteComponent } from "./listaClientes.js"
 
 export const updateComponent = (idParams) => {
+
+    let label = []
+    service.getVehicle().then((dados) => {
+        dados.forEach(element => {
+            if (element.label != null) {
+                label.push(element.label)
+            }
+        });
+    })
+
     view.getUpdate()
 
     service.getVehicle().then((dados) => {
@@ -25,10 +35,15 @@ export const updateComponent = (idParams) => {
             label: document.getElementById('placa').value,
             observation: document.getElementById('observacoes').value
         }
-        service.putVeiculo(atualizaCliente, idParams).then(() => {
-            cancelar()
-            listaClienteComponent();
-        })
+
+        if (label.includes(atualizaCliente.label)) {
+            return alert(`A placa: ${cadastroCliente.label} já está cadastrada no banco.`)
+        } else {
+            service.putVeiculo(atualizaCliente, idParams).then(() => {
+                cancelar()
+                listaClienteComponent();
+            })
+        }
     })
 }
 

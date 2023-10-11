@@ -20,6 +20,23 @@ const postVeiculo = (objetoCliente) => {
     })
 }
 
+const postCheckin = (label) => {
+    console.log({label})
+    return fetch(url + "/activities/checkin", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({label})
+    }).then((response) => {
+        if(response.status != 200) {
+            console.log(`Erro de servidor: ${response.status}`)
+        } else {
+            return response.json()
+        }
+    })
+}
+
 // ----------- GET ----------- // 
 
 const getVehicle = () => {
@@ -34,7 +51,7 @@ const getVehicle = () => {
 }
 
 const getActivities = () => {
-    return fetch(url + '/activities')
+    return fetch(url + "/activities")
     .then((response) => {
         if (response.status != 200) {
             console.log(`Erro no servidor: ${response.status}`)
@@ -62,6 +79,23 @@ const putVeiculo = (objetoCliente, id) => {
     })
 }
 
+const putCheckout = (objeto) => {
+    return fetch(url + "/activities/checkout", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(objeto)
+    }).then((response) => {
+        if(response.status != 200) {
+            console.log(`Erro de servidor: ${response.status}`)
+        } else {
+            return response.json()
+        }
+    })
+}
+
+
 // ----------- DELETE ----------- //
 
 const deleteVehicle = (id) => {
@@ -83,5 +117,7 @@ export const service = {
     getVehicle,
     putVeiculo,
     deleteVehicle,
-    getActivities
+    getActivities,
+    postCheckin,
+    putCheckout
 }
